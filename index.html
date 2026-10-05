@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BharatMitra (भारतमित्र) - AI-Powered Citizen Layer for Government Services</title>
+  <meta name="description" content="Empowering rural and low-digital-literacy citizens to discover, prepare, apply, and track government welfare schemes and DigiLocker documents.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- Indian Sovereign Tricolor Accent -->
+  <div class="tiranga-stripe"></div>
+
+  <!-- Main Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-area">
+        <div class="brand-emblem">🇮🇳</div>
+        <div class="brand-text">
+          <h1>BharatMitra <span class="hindi-sub">भारतमित्र</span></h1>
+          <div class="brand-tagline">The Intelligent Citizen Layer for Welfare Entitlements</div>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <span class="badge-tag badge-official-dpi">
+          <span>🔒</span> Built on Digital India & DigiLocker DPI
+        </span>
+
+        <!-- Audio Screen Reader Global Trigger -->
+        <button id="global-narrator-btn" class="audio-narrator-btn" title="Listen to this page in spoken voice">
+          <span>🔊</span> <span data-i18n="listenPage">Listen to Screen</span>
+        </button>
+
+        <!-- Mode Toggles -->
+        <button id="toggle-low-literacy" class="mode-toggle-btn" title="Enlarge text, simplify words, and emphasize icons">
+          <span>👵</span> <span data-i18n="btnLowLiteracy">Simple Mode</span>
+        </button>
+
+        <button id="toggle-low-bandwidth" class="mode-toggle-btn" title="Save mobile data in 2G/3G areas">
+          <span>⚡</span> <span data-i18n="btnBandwidth">Data Saver</span>
+        </button>
+
+        <!-- Language Selector -->
+        <select id="lang-select" class="language-dropdown" aria-label="Select Language">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी (Hindi)</option>
+          <option value="ta" selected>தமிழ் (Tamil)</option>
+          <option value="te">తెలుగు (Telugu)</option>
+          <option value="bn">বাংলা (Bengali)</option>
+        </select>
+      </div>
+    </div>
+  </header>
+
+  <!-- Live Demo Persona Switcher (For Classroom & Professor Evaluation) -->
+  <div class="persona-demo-bar">
+    <div class="persona-demo-container">
+      <div class="persona-label">
+        <span>🎓</span> <strong>Classroom Live Demo Switcher:</strong>
+      </div>
+      <div class="persona-chips">
+        <button class="persona-chip active" data-persona="ramesh">
+          👨‍🌾 Ramesh (Farmer, 58, Tamil Nadu)
+        </button>
+        <button class="persona-chip" data-persona="priya">
+          🧑‍🎓 Priya (Student, 19, Uttar Pradesh)
+        </button>
+        <button class="persona-chip" data-persona="shanti">
+          👵 Shanti Devi (Senior Citizen, 64, Bihar)
+        </button>
+      </div>
+      <div style="font-size:0.75rem; color:#94a3b8;">
+        Click any persona to dynamically recalculate AI eligibility & documents
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Application Body -->
+  <main class="app-main">
+
+    <!-- Stepped Workflow Tabs -->
+    <nav class="workflow-nav-wrapper">
+      <div class="workflow-tabs">
+        <button class="tab-btn active" data-tab="tab-discovery">
+          <span class="tab-num">1</span>
+          <span>✨ AI Discovery</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-profile">
+          <span class="tab-num">2</span>
+          <span>👤 Citizen Profile</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-digilocker">
+          <span class="tab-num">3</span>
+          <span>📁 DigiLocker Vault</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-application">
+          <span class="tab-num">4</span>
+          <span>📝 Prepare & Health Check</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-tracking">
+          <span class="tab-num">5</span>
+          <span>📍 My Applications</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-family">
+          <span class="tab-num">6</span>
+          <span>👨‍👩‍👧‍👦 Family & Life-Events</span>
+        </button>
+        <button class="tab-btn" data-tab="tab-security">
+          <span class="tab-num">7</span>
+          <span>🛡️ Scam Sentinel</span>
+        </button>
+      </div>
+    </nav>
+
+    <!-- =====================================================================
+         TAB 1: AI SCHEME DISCOVERY
+         ===================================================================== -->
+    <section id="tab-discovery" class="tab-panel active">
+      <!-- Deficiency Inversion Banner ("The Path-to-Eligibility") -->
+      <div class="path-to-eligibility-banner">
+        <div class="pte-content">
+          <div class="pte-icon">💡</div>
+          <div class="pte-text">
+            <h3>BharatMitra Innovation: "Path-to-Eligibility" Roadmap</h3>
+            <p>
+              Instead of turning citizens away with "Not Eligible", BharatMitra calculates what tiny step you need to take!
+              Currently, updating your <strong>Income Certificate (&lt; ₹2.5 Lakh)</strong> will immediately unlock <strong>2 additional schemes worth ₹37,000/yr</strong>.
+            </p>
+          </div>
+        </div>
+        <button class="btn btn-saffron" onclick="switchTab('tab-digilocker')">
+          Resolve Missing Documents ➔
+        </button>
+      </div>
+
+      <!-- Discovery Header Row -->
+      <div class="card-header-row">
+        <div class="card-title-group">
+          <h2>
+            <span>✨</span> <span data-i18n="matchingSchemes">Potentially Relevant Schemes</span>
+          </h2>
+          <p>
+            AI recommendations based on demographic profile, state residence, and verified land records.
+          </p>
+        </div>
+        <div style="display:flex; align-items:center; gap:12px;">
+          <span id="discovered-count-badge" class="badge-tag badge-official-dpi" style="font-size:0.85rem;">
+            Loading...
+          </span>
+          <div style="text-align:right;">
+            <span style="font-size:0.75rem; color:var(--text-subtle); display:block;" data-i18n="annualBenefitVal">Total Potential Annual Benefit:</span>
+            <strong id="total-benefit-value" style="font-size:1.25rem; color:var(--forest-green);">₹0</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Category Buttons for Low-Digital Literacy -->
+      <div class="low-literacy-quick-grid">
+        <div class="category-touch-card selected" onclick="filterByLifeEvent('farmer')">
+          <span class="cat-icon">🌾</span>
+          <span class="cat-label">Farmer Benefits</span>
+          <span class="cat-vernacular">விவசாய உதவி</span>
+        </div>
+        <div class="category-touch-card" onclick="filterByLifeEvent('student')">
+          <span class="cat-icon">🎓</span>
+          <span class="cat-label">Education / Grants</span>
+          <span class="cat-vernacular">கல்வி உதவித்தொகை</span>
+        </div>
+        <div class="category-touch-card" onclick="filterByLifeEvent('senior')">
+          <span class="cat-icon">👵</span>
+          <span class="cat-label">Senior Pension</span>
+          <span class="cat-vernacular">முதியோர் ஓய்வூதியம்</span>
+        </div>
+        <div class="category-touch-card" onclick="filterByLifeEvent('health')">
+          <span class="cat-icon">🏥</span>
+          <span class="cat-label">Health & Surgery</span>
+          <span class="cat-vernacular">இலவச மருத்துவம்</span>
+        </div>
+        <div class="category-touch-card" onclick="filterByLifeEvent('housing')">
+          <span class="cat-icon">🏠</span>
+          <span class="cat-label">Pucca House Grant</span>
+          <span class="cat-vernacular">வீடு கட்டும் உதவி</span>
+        </div>
+        <div class="category-touch-card" onclick="filterByLifeEvent('artisan')">
+          <span class="cat-icon">⚒️</span>
+          <span class="cat-label">Artisan Toolkit</span>
+          <span class="cat-vernacular">தொழில் உபகரணங்கள்</span>
+        </div>
+      </div>
+
+      <!-- Dynamic Schemes Grid -->
+      <div id="schemes-results-grid" class="schemes-grid">
+        <!-- Injected dynamically via app.js -->
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 2: CITIZEN PROFILE BUILDER
+         ===================================================================== -->
+    <section id="tab-profile" class="tab-panel">
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-title-group">
+            <h2><span>👤</span> Guided Citizen Profile</h2>
+            <p>Only essential eligibility parameters are requested. BharatMitra never stores sensitive biometrics.</p>
+          </div>
+          <button class="btn btn-outline" onclick="populateProfileForm()">
+            🔄 Reset to Demo Values
+          </button>
+        </div>
+
+        <form id="citizen-profile-form" onsubmit="event.preventDefault(); runSchemeDiscovery(); switchTab('tab-discovery');">
+          <div class="form-grid">
+            <div class="form-group">
+              <label class="form-label" for="prof-name">
+                Full Name as on Aadhaar
+                <span class="label-reason">To cross-check official records</span>
+              </label>
+              <input type="text" id="prof-name" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-age">
+                Age (Years)
+                <span class="label-reason">Determines pension or youth grants</span>
+              </label>
+              <input type="number" id="prof-age" class="form-input" min="1" max="110" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-state">
+                State of Residence
+                <span class="label-reason">Matches state-specific welfare funds</span>
+              </label>
+              <select id="prof-state" class="form-select">
+                <option value="Tamil Nadu">Tamil Nadu</option>
+                <option value="Uttar Pradesh">Uttar Pradesh</option>
+                <option value="Bihar">Bihar</option>
+                <option value="Maharashtra">Maharashtra</option>
+                <option value="Karnataka">Karnataka</option>
+                <option value="Rajasthan">Rajasthan</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-district">
+                District / Taluk
+                <span class="label-reason">For local block development officer</span>
+              </label>
+              <input type="text" id="prof-district" class="form-input" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-occupation">
+                Primary Occupation
+                <span class="label-reason">Determines sector-specific subsidies</span>
+              </label>
+              <select id="prof-occupation" class="form-select">
+                <option value="farmer">Farmer / Agricultural Worker</option>
+                <option value="student">Student / Aspirant</option>
+                <option value="retired">Senior Citizen / Pensioner</option>
+                <option value="artisan">Artisan / Traditional Craftsman</option>
+                <option value="self-employed">Micro-Business / Self-Employed</option>
+                <option value="labourer">Daily Wage Labourer</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-income">
+                Annual Family Income (₹)
+                <span class="label-reason">Checks poverty line / EWS criteria</span>
+              </label>
+              <input type="number" id="prof-income" class="form-input" step="1000" required>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-category">
+                Social Welfare Category
+                <span class="label-reason">Enables statutory reserved schemes</span>
+              </label>
+              <select id="prof-category" class="form-select">
+                <option value="General">General Category</option>
+                <option value="OBC">OBC (Other Backward Class)</option>
+                <option value="SC">SC (Scheduled Caste)</option>
+                <option value="ST">ST (Scheduled Tribe)</option>
+                <option value="Minority">Religious Minority</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="prof-landholding">
+                Agricultural Landholding
+                <span class="label-reason">Required for PM-Kisan & irrigation grants</span>
+              </label>
+              <input type="text" id="prof-landholding" class="form-input" placeholder="e.g. 2.5 Acres or None">
+            </div>
+
+            <div class="form-group" style="grid-column: 1 / -1;">
+              <label class="form-label" for="prof-education">
+                Highest Educational Qualification
+                <span class="label-reason">Used for scholarship mapping</span>
+              </label>
+              <input type="text" id="prof-education" class="form-input">
+            </div>
+          </div>
+
+          <div style="margin-top:24px; display:flex; justify-content:flex-end; gap:12px;">
+            <button type="submit" class="btn btn-primary btn-large">
+              Save Profile & Update Entitlements ➔
+            </button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 3: DIGILOCKER SIMULATED VAULT
+         ===================================================================== -->
+    <section id="tab-digilocker" class="tab-panel">
+      <div class="glass-card">
+        <div class="digilocker-header">
+          <div class="digilocker-header-info">
+            <div class="digilocker-badge">
+              <span>🇮🇳</span> DigiLocker Sovereign Vault
+            </div>
+            <div>
+              <h3 style="font-size:1.15rem; margin-bottom:2px;">Government Credential Verification Service</h3>
+              <p style="font-size:0.82rem; opacity:0.85;">Connected with user consent under Digital Public Infrastructure (DPI) protocol.</p>
+            </div>
+          </div>
+          <button class="btn btn-outline" style="background:#fff; color:var(--primary-navy);" onclick="renderDigiLockerMatrix(); speakText('DigiLocker document sync re-checked.');">
+            🔄 Refresh Credentials
+          </button>
+        </div>
+
+        <p style="color:var(--text-muted); font-size:0.92rem; margin-bottom:16px;">
+          BharatMitra reads authorized digital documents directly from issuing authorities (UIDAI, Revenue Department, Board of Education). When a document is missing, you can upload a photo for offline OCR pre-validation.
+        </p>
+
+        <div style="overflow-x:auto;">
+          <table class="doc-matrix-table">
+            <thead>
+              <tr>
+                <th>Document Name</th>
+                <th>Verification Purpose</th>
+                <th>Status</th>
+                <th>Issuing Source</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="digilocker-docs-tbody">
+              <!-- Dynamically populated via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 4: PREPARE & HEALTH CHECK (SMART APPLICATION)
+         ===================================================================== -->
+    <section id="tab-application" class="tab-panel">
+      <!-- Pre-Flight Application Health Check Dial -->
+      <div class="health-check-card">
+        <div class="health-meter-row">
+          <div class="health-score-dial">
+            <div class="health-score-num" id="health-dial-score">95%</div>
+          </div>
+          <div class="health-status-summary">
+            <h3>Pre-Flight "Application Health Check" Diagnostic</h3>
+            <p>Heuristic inspection to prevent silent portal rejections and weeks of bureaucratic delay.</p>
+          </div>
+        </div>
+
+        <div class="health-checklist" id="health-checklist-items">
+          <!-- Dynamically populated via app.js -->
+        </div>
+      </div>
+
+      <!-- Pre-filled Form Workspace -->
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-title-group">
+            <h2><span>📝</span> Smart Form Assistant</h2>
+            <p>Fields automatically mapped from your Profile and DigiLocker credentials.</p>
+          </div>
+          <span class="badge-tag badge-official-dpi">Auto-Pre-filled (100% Consent)</span>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="app-scheme-title">Applying For Scheme</label>
+            <input type="text" id="app-scheme-title" class="form-input" readonly style="background:#f1f5f9; font-weight:700;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-applicant-name">Applicant Name (Aadhaar Verified)</label>
+            <input type="text" id="app-applicant-name" class="form-input" readonly style="background:#f1f5f9;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-applicant-aadhaar">Aadhaar Reference Token</label>
+            <input type="text" id="app-applicant-aadhaar" class="form-input" readonly style="background:#f1f5f9;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-applicant-phone">Mobile Number (Aadhaar Linked)</label>
+            <input type="text" id="app-applicant-phone" class="form-input" readonly style="background:#f1f5f9;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-applicant-bank-acc">Bank Account for Direct Benefit Transfer (DBT)</label>
+            <input type="text" id="app-applicant-bank-acc" class="form-input" readonly style="background:#f1f5f9;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-applicant-ifsc">Bank IFSC Routing Code</label>
+            <input type="text" id="app-applicant-ifsc" class="form-input" readonly style="background:#f1f5f9;">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="app-applicant-land">Registered Landholding Title</label>
+            <input type="text" id="app-applicant-land" class="form-input" readonly style="background:#f1f5f9;">
+          </div>
+        </div>
+
+        <!-- Dual-Track Architecture Explanation Box -->
+        <div style="margin-top:28px;">
+          <h3 style="font-size:1.15rem; color:var(--primary-navy); font-weight:800; margin-bottom:10px;">
+            Dual-Track Submission Engine Architecture
+          </h3>
+          <div class="submission-track-container">
+            <div class="track-box recommended">
+              <span class="track-badge">Case A: Supported</span>
+              <h3><span>⚡</span> Authorized Direct API</h3>
+              <p>When official API Setu / State e-District endpoints exist, BharatMitra securely submits your application and delivers an instant government acknowledgment ID.</p>
+              <div class="track-flow-diagram">
+                User ➔ BharatMitra ➔ Authorized Gov API ➔ Dept Backend ➔ Ref #
+              </div>
+            </div>
+
+            <div class="track-box">
+              <span class="track-badge" style="background:#64748b;">Case B: Fallback</span>
+              <h3><span>🌐</span> Official Portal Redirect</h3>
+              <p>For departments without third-party APIs, BharatMitra copies your pre-checked data package and safely redirects you to the official <code>.gov.in</code> portal.</p>
+              <div class="track-flow-diagram">
+                User ➔ BharatMitra (Pre-check) ➔ Official .gov.in Portal ➔ Citizen Submits
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:24px; display:flex; justify-content:flex-end; gap:14px; flex-wrap:wrap;">
+          <button class="btn btn-outline" onclick="switchTab('tab-discovery')">
+            Back to Schemes
+          </button>
+          <button id="submit-application-btn" class="btn btn-saffron btn-large" onclick="handleFinalSubmission()">
+            🚀 Submit via Authorized Digital India API
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 5: MY APPLICATIONS TRACKING DASHBOARD
+         ===================================================================== -->
+    <section id="tab-tracking" class="tab-panel">
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-title-group">
+            <h2><span>📍</span> My Welfare Applications Tracker</h2>
+            <p>Unified real-time status across multi-department Central and State schemes.</p>
+          </div>
+          <button class="btn btn-outline" onclick="renderApplicationsTable(); speakText('Refreshing all official application stages.');">
+            🔄 Check Updates
+          </button>
+        </div>
+
+        <div style="overflow-x:auto;">
+          <table class="applications-tracker-table">
+            <thead>
+              <tr>
+                <th>Scheme & Application Reference</th>
+                <th>Submitted On</th>
+                <th>Current Stage</th>
+                <th>Next Required Action</th>
+                <th>Live Sync</th>
+              </tr>
+            </thead>
+            <tbody id="applications-table-tbody">
+              <!-- Dynamically populated via app.js -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 6: FAMILY DASHBOARD & LIFE-EVENTS
+         ===================================================================== -->
+    <section id="tab-family" class="tab-panel">
+      <div class="glass-card">
+        <div class="card-header-row">
+          <div class="card-title-group">
+            <h2><span>👨‍👩‍👧‍👦</span> Multi-Generational Family Dashboard</h2>
+            <p>Manage entitlements for elderly parents, student children, and self from one single interface.</p>
+          </div>
+          <span class="badge-tag doc-status-available">4 Members Monitored</span>
+        </div>
+
+        <div class="family-members-grid" id="family-grid-container">
+          <!-- Dynamically populated via app.js -->
+        </div>
+
+        <h3 style="font-size:1.2rem; color:var(--primary-navy); font-weight:800; margin:28px 0 12px;">
+          🌱 Life-Event Based Discovery
+        </h3>
+        <p style="color:var(--text-muted); font-size:0.9rem; margin-bottom:16px;">
+          Government welfare happens around key milestones. Select an upcoming life event to discover immediate entitlement windows:
+        </p>
+
+        <div class="life-events-grid">
+          <div class="life-event-card" onclick="filterByLifeEvent('childbirth')">
+            <div class="life-event-icon">👶</div>
+            <strong>Childbirth</strong>
+            <div style="font-size:0.75rem; color:var(--text-subtle);">Matru Vandana & Nutrition</div>
+          </div>
+
+          <div class="life-event-card" onclick="filterByLifeEvent('college')">
+            <div class="life-event-icon">🎓</div>
+            <strong>Starting College</strong>
+            <div style="font-size:0.75rem; color:var(--text-subtle);">Fee Subsidies & Laptops</div>
+          </div>
+
+          <div class="life-event-card" onclick="filterByLifeEvent('farming')">
+            <div class="life-event-icon">🌾</div>
+            <strong>New Crop Season</strong>
+            <div style="font-size:0.75rem; color:var(--text-subtle);">Seeds, Fertilizer, Pumps</div>
+          </div>
+
+          <div class="life-event-card" onclick="filterByLifeEvent('retirement')">
+            <div class="life-event-icon">👴</div>
+            <strong>Retirement (60+)</strong>
+            <div style="font-size:0.75rem; color:var(--text-subtle);">Social Security Pensions</div>
+          </div>
+
+          <div class="life-event-card" onclick="filterByLifeEvent('business')">
+            <div class="life-event-icon">🏪</div>
+            <strong>Starting Shop / MSME</strong>
+            <div style="font-size:0.75rem; color:var(--text-subtle);">MUDRA & PMEGP Loans</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         TAB 7: SCAM SENTINEL & SECURITY MODULE
+         ===================================================================== -->
+    <section id="tab-security" class="tab-panel">
+      <div class="scam-sentinel-banner">
+        <div class="icon">⚠️</div>
+        <div>
+          <h3 style="font-size:1.15rem; color:var(--alert-red); font-weight:800;">
+            BharatMitra Scam Sentinel & Whitelist Verification
+          </h3>
+          <p style="font-size:0.88rem; color:#7f1d1d; margin-top:2px;">
+            Rural citizens lose millions to fake WhatsApp links demanding fees for PM-Kisan or Free Laptops. BharatMitra acts as an active cryptographic shield.
+          </p>
+        </div>
+      </div>
+
+      <div class="glass-card">
+        <h3 style="font-size:1.2rem; color:var(--primary-navy); font-weight:800; margin-bottom:14px;">
+          How BharatMitra Protects You vs. Common Frauds
+        </h3>
+
+        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(320px, 1fr)); gap:20px;">
+          <div style="background:#fef2f2; border:1.5px solid #fecaca; border-radius:var(--radius-md); padding:18px;">
+            <h4 style="color:var(--alert-red); font-size:1rem; margin-bottom:8px;">❌ Typical Fraud / Broker Trap</h4>
+            <ul style="padding-left:18px; font-size:0.88rem; color:#7f1d1d; line-height:1.5;">
+              <li>Fake domain: <code>pmkisan-free-bonus.xyz</code></li>
+              <li>Asks you to share OTP or UPI PIN to "receive money"</li>
+              <li>Unauthorized CSC broker charging ₹300 for a free service</li>
+              <li>Keeps your original Aadhaar and ration card papers hostage</li>
+            </ul>
+          </div>
+
+          <div style="background:#f0fdf4; border:1.5px solid #bbf7d0; border-radius:var(--radius-md); padding:18px;">
+            <h4 style="color:var(--forest-green); font-size:1rem; margin-bottom:8px;">✅ BharatMitra Sovereign Protection</h4>
+            <ul style="padding-left:18px; font-size:0.88rem; color:#14532d; line-height:1.5;">
+              <li>Strict Whitelist: Only verified <code>.gov.in</code> and <code>.nic.in</code> portals</li>
+              <li>Zero Biometrics: We NEVER store fingerprints or iris data</li>
+              <li>Transparent Pricing: Free discovery; statutory fees clearly distinguished</li>
+              <li>DigiLocker direct integration: No physical papers left on kiosk PCs</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="margin-top:24px; padding:16px; background:var(--bg-card-subtle); border-radius:var(--radius-md); font-size:0.88rem;">
+          <strong>Legal & Procedural Disclaimer:</strong> BharatMitra is an intelligent discovery and application assistance layer designed to empower citizens. It does not provide personalized legal advice and does not alter statutory government criteria. Final sanction and disbursement of all benefits remains solely with the respective Government Ministries.
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- =====================================================================
+       VERNACULAR "DIGITAL SAATHI" AI CHATBOT & JARGON BUSTER
+       ===================================================================== -->
+  <div class="saathi-widget-container">
+    <button id="saathi-trigger" class="saathi-trigger-btn">
+      <span style="font-size:1.3rem;">🤖</span>
+      <span data-i18n="saathiHelp">Ask BharatMitra Saathi</span>
+    </button>
+  </div>
+
+  <div id="saathi-window" class="saathi-chat-window">
+    <div class="saathi-chat-header">
+      <div class="saathi-header-title">
+        <div class="saathi-avatar">🗣️</div>
+        <div>
+          <strong style="font-size:0.95rem;">BharatMitra Saathi</strong>
+          <div style="font-size:0.72rem; opacity:0.85;">Indic Multimodal Voice AI</div>
+        </div>
+      </div>
+      <button id="saathi-close" style="background:transparent; border:none; color:#fff; font-size:1.2rem; cursor:pointer;">✕</button>
+    </div>
+
+    <!-- Quick question prompt chips -->
+    <div class="saathi-quick-prompts">
+      <button class="quick-prompt-chip" onclick="sendUserChatMessage('What schemes can I apply for?')">
+        🌾 My Schemes?
+      </button>
+      <button class="quick-prompt-chip" onclick="sendUserChatMessage('What documents do I need?')">
+        📁 Documents Needed?
+      </button>
+      <button class="quick-prompt-chip" onclick="sendUserChatMessage('Why is my application still pending?')">
+        ⏳ Pending Status?
+      </button>
+    </div>
+
+    <!-- Messages Container -->
+    <div id="saathi-messages-container" class="saathi-messages-box">
+      <!-- Injected dynamically via app.js -->
+    </div>
+
+    <!-- Bureaucratic Jargon Buster Panel -->
+    <div style="padding:10px 14px; background:#fff; border-top:1px solid var(--border-light);">
+      <details style="font-size:0.8rem;">
+        <summary style="cursor:pointer; font-weight:700; color:var(--primary-blue);">
+          📖 Bureaucratic Jargon Buster ("Explain this simply")
+        </summary>
+        <div style="margin-top:8px;">
+          <input type="text" id="jargon-input-text" class="form-input" style="padding:6px 10px; font-size:0.8rem;" placeholder="Paste confusing term e.g. 'Domicile Tehsildar Rule 12'">
+          <button class="btn btn-outline" style="padding:4px 10px; font-size:0.75rem; margin-top:6px; width:100%;" onclick="bustJargon()">
+            Explain in Simple Words ➔
+          </button>
+          <div id="jargon-result-box" style="display:none; margin-top:6px; padding:8px; background:var(--primary-light); border-radius:4px; font-size:0.78rem;"></div>
+        </div>
+      </details>
+    </div>
+
+    <!-- Input Bar -->
+    <div class="saathi-input-bar">
+      <button id="saathi-mic-btn" class="saathi-mic-btn" title="Speak your question">
+        🎤
+      </button>
+      <input type="text" id="saathi-chat-input" class="form-input" style="padding:8px 12px; font-size:0.88rem;" placeholder="Type or speak in Tamil / Hindi / English...">
+      <button id="saathi-send-btn" class="btn btn-primary" style="padding:8px 14px;">
+        ➤
+      </button>
+    </div>
+  </div>
+
+  <!-- =====================================================================
+       MODALS: SCHEME DETAIL & SUBMISSION SIMULATOR
+       ===================================================================== -->
+  <div id="scheme-detail-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeAllModals()">✕</button>
+      <div id="scheme-detail-content">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <div id="submission-modal" class="modal-overlay">
+    <div class="modal-box">
+      <button class="modal-close-btn" onclick="closeAllModals()">✕</button>
+      <div id="submission-modal-body">
+        <!-- Injected dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div class="footer-container">
+      <div>
+        <h4 style="color:#fff; font-size:1.1rem; margin-bottom:8px;">BharatMitra (भारतमित्र)</h4>
+        <p style="font-size:0.85rem; line-height:1.5;">
+          The intelligent citizen layer connecting people to sovereign welfare entitlements without confusing jargon or exploitative middlemen.
+        </p>
+      </div>
+
+      <div>
+        <h5 style="color:#fff; font-size:0.95rem; margin-bottom:8px;">Three Core Design Constraints</h5>
+        <ul style="list-style:none; font-size:0.82rem; line-height:1.6;">
+          <li>⚖️ <strong>Zero Legal Experts:</strong> Procedural guidance only; no legal advice.</li>
+          <li>👵 <strong>Low Digital Literacy:</strong> Voice-first, large buttons, tactile UI.</li>
+          <li>🏛️ <strong>Existing Procedures Preserved:</strong> Works with official portals.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h5 style="color:#fff; font-size:0.95rem; margin-bottom:8px;">Sustainable Monetization</h5>
+        <p style="font-size:0.82rem; line-height:1.5;">
+          • Free Discovery & AI Chatbot<br>
+          • Assisted Pre-Fill Health Check: ₹49 – ₹99<br>
+          • B2B Subscriptions for NGOs & Rural Centers
+        </p>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <div>© 2026 BharatMitra Initiative. Pair-programmed for college presentation.</div>
+      <div>Zero-Knowledge Privacy • Built on Digital India DPI Principles</div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
